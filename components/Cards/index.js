@@ -46,13 +46,14 @@ function articles(headline, img, name) {
 
 axios.get("https://lambda-times-backend.herokuapp.com/articles")
     .then(response => {
-        console.log(response);
-        for( const [articleType, articleList] of Object.entries(data.articles)){
+        for( const [articleType, articleList] of Object.entries(response.data.articles)){
             for(const article of articleList){
-                //how do I get article.authorName etc??
+                console.log(article);
+                const {authorName, headline, authorPhoto} = article;
+                articles(headline, authorPhoto, authorName)     
             }
         }
             const parentEl = document.querySelector('.cards-container');
-            parentEl.appendChild(articles(item));
+            parentEl.appendChild(articles());
     })
 
