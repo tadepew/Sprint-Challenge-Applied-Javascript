@@ -17,3 +17,42 @@
 // </div>
 //
 // Create a card for each of the articles and add the card to the DOM.
+
+function articles(headline, img, name) {
+    const card = document.createElement('div');
+    const headlineDiv = document.createElement('div');
+    const auth = document.createElement('author');
+    const imgDiv = document.createElement('div');
+    const image = document.createElement('img');
+    const authName = document.createElement('span')
+
+    card.classList.add('card');
+    headlineDiv.classList.add('headline');
+    auth.classList.add('author');
+    imgDiv.classList.add('img-container');
+
+    headlineDiv.textContent = headline;
+    image.src = img
+    authName.textContent = name;
+
+    card.appendChild(headlineDiv);
+    card.appendChild(auth);
+    auth.appendChild(imgDiv)
+    imgDiv.appendChild(image);
+    imgDiv.appendChild(authName)
+    
+    return card;
+}
+
+axios.get("https://lambda-times-backend.herokuapp.com/articles")
+    .then(response => {
+        console.log(response);
+        for( const [articleType, articleList] of Object.entries(data.articles)){
+            for(const article of articleList){
+                //how do I get article.authorName etc??
+            }
+        }
+            const parentEl = document.querySelector('.cards-container');
+            parentEl.appendChild(articles(item));
+    })
+
